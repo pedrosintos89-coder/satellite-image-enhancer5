@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عرض صور القمر الاصطناعي</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #0d1117;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #161b22;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #58a6ff;
+    }
+    main {
+      padding: 30px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    input {
+      width: 250px;
+    }
+    button {
+      background-color: #238636;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2ea043;
+    }
+    img {
+      margin-top: 20px;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>🛰️ تطبيق عرض صور القمر الاصطناعي</header>
+  <main>
+    <p>أدخل إحداثيات المكان (خط العرض و الطول) ثم اضغط على عرض الصورة</p>
+    <input type="text" id="lat" placeholder="خط العرض (Latitude)">
+    <input type="text" id="lon" placeholder="خط الطول (Longitude)">
+    <br>
+    <button onclick="getSatelliteImage()">عرض الصورة</button>
+    <div id="imageContainer"></div>
+  </main>
+
+  <script>
+    async function getSatelliteImage() {
+      const lat = document.getElementById("lat").value;
+      const lon = document.getElementById("lon").value;
+      const imgDiv = document.getElementById("imageContainer");
+
+      if (!lat || !lon) {
+        imgDiv.innerHTML = "<p style='color:red;'>يرجى إدخال الإحداثيات كاملة.</p>";
+        return;
